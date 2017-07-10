@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Bootstrap 3, from LayoutIt!</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="LayoutIt!">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h2>
+					Home
+				</h2>
+				<p>
+					Domotics @ Casa Wei and Maarten
+				</p>
+			</div>
+			<table class="table">
+				<tbody>
+					<tr>
+						<td>
+							Screen
+						</td>
+						<td>
+								<button data-bind="click: screenUpClick" type="button" class="btn btn-warning">UP</button>
+								<button data-bind="click: screenDownClick" type="button" type="button" class="btn btn-danger">DOWN</button>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Garage Door
+						</td>
+						<td>
+								<button data-bind="click: garageClick" type="button" type="button" class="btn btn-danger">UP/STOP/DOWN</button>						
+						</td>
+					</tr>
+					<tr>
+						<td>
+							All Lights OFF
+						</td>
+						<td>
+								<button data-bind="click: allOffClick" type="button" type="button" class="btn btn-danger">OFF</button>						
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+		<script type='text/javascript' src='js/knockout-3.4.2.js'></script>
+		<script type='text/javascript' src='js/domotics.js'></script>
+  </body>
+</html>
