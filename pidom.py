@@ -7,6 +7,9 @@ import gpio
 import time
 
 app = Flask(__name__, static_url_path='')
+
+app.config.from_object('settings')
+
 api = Api(app, default="domotica", doc='/doc')
 
 output = gpio.Output()
@@ -19,7 +22,7 @@ def check_auth(username, password):
     """This function is called to check if a username /
     password combination is valid.
     """
-    return username == USER and password == PASSWORD
+    return username == app.config['AUTH_USER'] and password == app.config['AUTH_PASS']
 
 def authenticate():
     """Sends a 401 response that enables basic auth"""
@@ -40,6 +43,7 @@ def requires_auth(f):
 
 
 
+@requires_auth
 @app.route('/index')
 @app.route('/')
 def index():
@@ -49,6 +53,7 @@ def index():
 
 @api.route('/screen')
 class Screen(Resource):
+    @requires_auth
     @api.expect(parser)
     def get(self):
         args = parser.parse_args()
@@ -68,6 +73,7 @@ class Garage(Resource):
 
 @api.route('/alloff')
 class Alloff(Resource):
+    @requires_auth
     def get(self):
         output.pulse(3)
 
