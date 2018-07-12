@@ -57,7 +57,13 @@
 	</div>
 	<div class="row">
 		<div class="col-md-6">
-                    <img src="img/frontdoor.png"/>
+                    <div class="images_parent">
+                    	<img src="img/frontdoor.png"/>
+                    	<img src="img/on.png" class="on_stairs" data-bind="click: stairsOnClick, visible: isStairsOn"/>
+                    	<img src="img/on.png" class="on_outside" data-bind="click: outsideOnClick, visible: isOutsideOn"/>
+                        <img src="img/off.png" class="off_stairs" data-bind="click: stairsOffClick, visible: isStairsOn() == false"/>
+                        <img src="img/off.png" class="off_outside" data-bind="click: outsideOffClick, visible: isOutsideOn() == false"/>
+                    </div>
                 </div>
 		<div class="col-md-6">
                 </div>

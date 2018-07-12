@@ -5,7 +5,7 @@ import time
 
 
 class Output:
-    CHANNELS = [11,13,15,16,18,22,24]
+    CHANNELS = [11,13,15,16,18,22,24,7]
 
     def __init__(self):
         GPIO.setmode(GPIO.BOARD)

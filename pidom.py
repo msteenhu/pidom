@@ -4,15 +4,19 @@ from flask import request, Response, render_template
 from functools import wraps
 
 import gpio
+import lightstate
+
 import time
 
 app = Flask(__name__, static_url_path='')
-
-app.config.from_object('settings')
-
+app.config.from_envvar('SETTINGS')
 api = Api(app, default="domotica", doc='/doc')
 
+from werkzeug.contrib.fixers import ProxyFix
+app.wsgi_app = ProxyFix(app.wsgi_app)
+
 output = gpio.Output()
+lightState = lightstate.LightState(app.config['REDIS_HOST'], app.config['REDIS_PORT'], app.config['REDIS_DB'], app.config['REDIS_PASSWORD'])
 
 parser = reqparse.RequestParser()
 parser.add_argument('action', type=str, default='up', choices=('up', 'down'))
@@ -22,7 +26,7 @@ def check_auth(username, password):
     """This function is called to check if a username /
     password combination is valid.
     """
-    return username == app.config['AUTH_USER'] and password == app.config['AUTH_PASS']
+    return username == app.config['USER'] and password == app.config['PASSWORD']
 
 def authenticate():
     """Sends a 401 response that enables basic auth"""
@@ -76,6 +80,31 @@ class Alloff(Resource):
     @requires_auth
     def get(self):
         output.pulse(3)
+
+@api.route('/outside')
+class Outside(Resource):
+    @requires_auth
+    def get(self):
+        output.pulse(4)
+
+@api.route('/stairs')
+class Stairs(Resource):
+    @requires_auth
+    def get(self):
+        output.pulse(5)
+
+@api.route('/frontdoorgroupoff')
+class FrontdoorGroupOff(Resource):
+    @requires_auth
+    def get(self):
+        output.pulse(6)
+@api.route('/frontdoorgroupon')
+class FrontdoorGroupOn(Resource):
+    @requires_auth
+    def get(self):
+        output.pulse(7)
+
+
 
 if __name__ == '__main__':
     app.run(host='::')

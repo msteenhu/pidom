@@ -1,6 +1,8 @@
 function ViewModel() {
   var self = this;
-   
+
+  self.isStairsOn = ko.observable(true);
+  self.isOutsideOn = ko.observable(false);   
 
   self.screenUpClick = function() {
 
@@ -37,6 +39,46 @@ function ViewModel() {
     $.ajax({
       type: "GET",
       url: "/alloff",
+      failure: function(errMsg) {
+        alert(errMsg);
+      }
+    });
+  };
+  self.stairsOnClick = function() {
+
+    $.ajax({
+      type: "GET",
+      url: "/stairs",
+      failure: function(errMsg) {
+        alert(errMsg);
+      }
+    });
+  };
+  self.outsideOnClick = function() {
+
+    $.ajax({
+      type: "GET",
+      url: "/outside",
+      failure: function(errMsg) {
+        alert(errMsg);
+      }
+    });
+  };
+  self.stairsOffClick = function() {
+
+    $.ajax({
+      type: "GET",
+      url: "/stairs",
+      failure: function(errMsg) {
+        alert(errMsg);
+      }
+    });
+  };
+  self.outsideOffClick = function() {
+
+    $.ajax({
+      type: "GET",
+      url: "/outside",
       failure: function(errMsg) {
         alert(errMsg);
       }
