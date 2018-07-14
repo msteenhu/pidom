@@ -51,6 +51,9 @@ function ViewModel() {
       url: "/stairs",
       failure: function(errMsg) {
         alert(errMsg);
+      },
+      success: function(data) {
+        self.getFrontdoorGroupState();
       }
     });
   };
@@ -61,6 +64,9 @@ function ViewModel() {
       url: "/outside",
       failure: function(errMsg) {
         alert(errMsg);
+      },
+      success: function(data) {
+        self.getFrontdoorGroupState();
       }
     });
   };
@@ -71,6 +77,9 @@ function ViewModel() {
       url: "/stairs",
       failure: function(errMsg) {
         alert(errMsg);
+      },
+      success: function(data) {
+        self.getFrontdoorGroupState();
       }
     });
   };
@@ -81,10 +90,22 @@ function ViewModel() {
       url: "/outside",
       failure: function(errMsg) {
         alert(errMsg);
+      },
+      success: function(data) {
+        self.getFrontdoorGroupState();
       }
+    });
+  };
+
+  self.getFrontdoorGroupState = function() {
+    
+    $.getJSON("/frontdoorgroupstate", function(data) { 
+      self.isStairsOn(data[1]);
+      self.isOutsideOn(data[0]); 
     });
   };
 }
 
 viewModel = new ViewModel();
 ko.applyBindings(viewModel);
+viewModel.getFrontdoorGroupState();

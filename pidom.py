@@ -86,14 +86,14 @@ class Outside(Resource):
     @requires_auth
     def get(self):
         output.pulse(4)
-        lightState.toggle(1)
+        lightState.toggle(0)
 
 @api.route('/stairs')
 class Stairs(Resource):
     @requires_auth
     def get(self):
         output.pulse(5)
-        lightState.toggle(2)
+        lightState.toggle(1)
 
 @api.route('/frontdoorgroupoff')
 class FrontdoorGroupOff(Resource):
@@ -121,8 +121,11 @@ class FrontdoorGroupState(Resource):
         # set state outside
         if state[0]:
             output.pulse(4)
+        # set state stairs
         if state[1]:
             output.pulse(5)
+
+        return state
 
 
 if __name__ == '__main__':
