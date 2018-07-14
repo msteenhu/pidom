@@ -86,24 +86,43 @@ class Outside(Resource):
     @requires_auth
     def get(self):
         output.pulse(4)
+        lightState.toggle(1)
 
 @api.route('/stairs')
 class Stairs(Resource):
     @requires_auth
     def get(self):
         output.pulse(5)
+        lightState.toggle(2)
 
 @api.route('/frontdoorgroupoff')
 class FrontdoorGroupOff(Resource):
     @requires_auth
     def get(self):
         output.pulse(6)
+        lightState.setState([False, False])
 @api.route('/frontdoorgroupon')
 class FrontdoorGroupOn(Resource):
     @requires_auth
     def get(self):
         output.pulse(7)
-
+        lightState.setState([True, True])
+@api.route('/frontdoorgroupstate')
+class FrontdoorGroupState(Resource):
+    @requires_auth
+    def get(self):
+        return lightState.getState()
+    @requires_auth
+    def post(self):
+        state = request.get_json()
+        lightState.setState(state)
+        # sync: groupoff
+        output.pulse(6)
+        # set state outside
+        if state[0]:
+            output.pulse(4)
+        if state[1]:
+            output.pulse(5)
 
 
 if __name__ == '__main__':

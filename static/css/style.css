@@ -1,28 +1,29 @@
 # Empty CSS file for your own CSS
-.image_parent {
+.images_parent {
   position: relative;
   display: inline;
-  z-index:0;
+  z-index: 0;
+  zoom: 0.75;
 }
 
 .on_stairs {
   position: absolute;
   bottom: 223px;
   left: 74px;
-  z-index:1;
+  z-index: 1;
 }
 
 .on_outside {
   position: absolute;
   bottom: 20px;
   left: 214px;
-  z-index:1;
+  z-index: 1;
 }
 .off_stairs {
   position: absolute;
   bottom: 223px;
   left: 74px;
-  z-index:1;
+  z-index: 1;
 }
 
 .off_outside {

@@ -8,20 +8,31 @@ class LightState:
         self.state = "00"
         self.redis = redis.Redis(host=redis_host, port=redis_port, db=redis_db, password=redis_pass)
 
-    def getState():
-        return LightState.__strings_to_bools(redis.get('state'))
+    def getState(self):
+        state = self.redis.get('state')
+        if state is None:
+            state = '00'
+        return LightState.__strings_to_bools(state)
 
-    def setState(bools):
-        redis.set('state', LightState.__bools_to_string(bools))
+    def setState(self, bools):
+        self.redis.set('state', LightState.__bools_to_string(bools))
+
+    def toggle(self, position):
+        state = self.redis.get('state')
+        if state is None:
+            state = '00'
+        bools = LightState.__strings_to_bools(state)
+        bools[position] = not bools[position]
+        self.setState(bools)
 
     @staticmethod
     def __strings_to_bools(state_str):
         bools = []
         for char in state_str:
             if char == "0":
-                bools = bools + False
+                bools.append(False)
             else:
-                bools = bools + True
+                bools.append(True)
         return bools
 
     @staticmethod

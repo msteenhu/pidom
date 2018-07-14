@@ -15,10 +15,10 @@
   </head>
   <body>
 
-    <div class="container-fluid">
+<div class="container-fluid">
 	<div class="row">
 		<div class="col-md-12">
-			<div class="jumbotron" style="padding-top:2px;padding-bottom:2px">
+			<div class="jumbotron" style="padding-top:0px;padding-bottom:0px">
 				<h2>
 					Home
 				</h2>
@@ -56,18 +56,16 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-6">
-                    <div class="images_parent">
-                    	<img src="img/frontdoor.png"/>
-                    	<img src="img/on.png" class="on_stairs" data-bind="click: stairsOnClick, visible: isStairsOn"/>
-                    	<img src="img/on.png" class="on_outside" data-bind="click: outsideOnClick, visible: isOutsideOn"/>
-                        <img src="img/off.png" class="off_stairs" data-bind="click: stairsOffClick, visible: isStairsOn() == false"/>
-                        <img src="img/off.png" class="off_outside" data-bind="click: outsideOffClick, visible: isOutsideOn() == false"/>
-                    </div>
-                </div>
-		<div class="col-md-6">
-                </div>
+		<div class="col-md-12">
+            <div class="images_parent" style="zoom: 0.6">
+               	<img src="img/frontdoor.png"/>
+               	<img src="img/on.png" class="on_stairs" data-bind="click: stairsOnClick, visible: isStairsOn"/>
+               	<img src="img/on.png" class="on_outside" data-bind="click: outsideOnClick, visible: isOutsideOn"/>
+                <img src="img/off.png" class="off_stairs" data-bind="click: stairsOffClick, visible: isStairsOn() == false"/>
+                <img src="img/off.png" class="off_outside" data-bind="click: outsideOffClick, visible: isOutsideOn() == false"/>
+            </div>
         </div>
+	</div>	
 </div>
 
     <script src="js/jquery.min.js"></script>
