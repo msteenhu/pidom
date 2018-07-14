@@ -10,3 +10,9 @@ Python project controlling teleruptors using Raspberry Pi GPIO
 # 6H outside: OFF, stairs: OFF
 0 6 * * * curl -k -u USER:PASS -X POST https://URL/frontdoorgroupstate --header 'Content-Type: application/json' -d'[false,false]'
 ```
+
+# Images wiring
+
+![Picture switches](switches.jpg "Wiring switching")
+
+![RPi cabling](cabling_pi.jpg "RPi cabling")
