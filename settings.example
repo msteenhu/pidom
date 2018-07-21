@@ -1,0 +1,20 @@
+REDIS_HOST="localhost"
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_PASSWORD="test"
+
+USER="test"
+PASSWORD="test"
+
+SWITCHES = {
+    'garage'           : 0,
+    'screen_down'      : 1,
+    'screen_up'        : 2,
+    'alloff'           : 3,
+    'outside'          : 4,
+    'stairs'           : 5,
+    'persistedoff'     : 6, # stairs and frontdoor OFF
+    'persistedon'      : 7, # stairs and frontdoor ON
+}
+
+PERSISTENT_STATE = [ 'outside', 'stairs' ]
